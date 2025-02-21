@@ -8,5 +8,13 @@
         public string? Description { get; set; }
         public string? MainImage { get; set; }
         public List<string> Images { get; set; } = [];
+
+        public static List<string> shoesImgs =
+        [
+            "https://img.freepik.com/vettori-gratuito/icona-dello-sport-di-scarpe-da-tennis-blu_18591-82518.jpg?t=st=1740129481~exp=1740133081~hmac=c3458c31705a1471f74595cee586933cb866759bddecc342d8cf11182ae96c23&w=1380",
+            "https://img.freepik.com/vettori-gratuito/insieme-dell-illustrazione-del-disegno-della-mano-delle-icone-di-wanderlust_53876-28446.jpg?t=st=1740129548~exp=1740133148~hmac=0ba8bc15bfa83735e645ee0b3457789ba05757e22337109bea00febd91a07223&w=400",
+            "https://img.freepik.com/vettori-gratuito/scarpe-donna-disegno_1268-344.jpg?t=st=1740129590~exp=1740133190~hmac=3f8c1d385c2f23ae358bb7dba73237db69c15fe6555596a98be388d2bae8d033&w=400",
+            "https://img.freepik.com/vettori-gratuito/le-scarpe-da-tennis-moderne-di-sport-di-colore-blu-con-i-laccetti-bianchi-realizzano-la-singola-immagine-sull-illustrazione-isolata-fondo-bianco_1284-31208.jpg?t=st=1740129627~exp=1740133227~hmac=667a6febf15b3079011c7a13213e662160409b9981c63de82df14184f461f503&w=400",
+        ];
     }
 }

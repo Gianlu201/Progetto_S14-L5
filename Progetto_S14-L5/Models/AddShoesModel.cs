@@ -28,5 +28,30 @@ namespace Progetto_S14_L5.Models
 
         [Display(Name = "Other pictures")]
         public List<string> Images { get; set; } = ["", ""];
+
+        // Controllo sull'immagine di copertina
+        public void CheckMainImage()
+        {
+            Random rdn = new();
+
+            if (string.IsNullOrEmpty(MainImage) || string.IsNullOrWhiteSpace(MainImage))
+            {
+                MainImage = Shoes.shoesImgs[rdn.Next(0, Shoes.shoesImgs.Count)];
+            }
+        }
+
+        // Controllo sulle immagini aggiuntive
+        public void CheckImages()
+        {
+            Random rdn = new();
+
+            for (int i = 0; i < Images.Count; i++)
+            {
+                if (string.IsNullOrEmpty(Images[i]) || string.IsNullOrWhiteSpace(Images[i]))
+                {
+                    Images[i] = Shoes.shoesImgs[rdn.Next(0, Shoes.shoesImgs.Count)];
+                }
+            }
+        }
     }
 }
