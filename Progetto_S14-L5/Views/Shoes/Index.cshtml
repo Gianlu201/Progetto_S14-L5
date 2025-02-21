@@ -12,8 +12,10 @@
         foreach(var shoes in Model.Shoes)
         {
             <div class="col-3">
-                <div class="card" style="width: 18rem;">
-                    <img src=@shoes.MainImage class="card-img-top" alt=@shoes.Name>
+                <div class="card mb-4 rounded-3 overflow-hidden">
+                    <a class="imgBox d-flex align-items-center" asp-controller="Shoes" asp-action="Details" asp-route-id="@shoes.Id">
+                        <img src=@shoes.MainImage class="card-img-top" alt=@shoes.Name>
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title">@shoes.Name</h5>
                         <p class="card-text">€@shoes.Price</p>

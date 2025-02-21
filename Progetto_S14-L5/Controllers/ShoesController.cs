@@ -87,6 +87,7 @@ namespace Progetto_S14_L5.Controllers
             };
 
             Random rdn = new();
+            // Controllo sull'immagine di copertina
             if (
                 !string.IsNullOrEmpty(addShoesModel.MainImage)
                 && !string.IsNullOrWhiteSpace(addShoesModel.MainImage)
@@ -99,9 +100,61 @@ namespace Progetto_S14_L5.Controllers
                 newShoes.MainImage = shoesImgs[rdn.Next(0, shoesImgs.Count)];
             }
 
-            // vedere per altre immagini
+            // Controllo sulle immagini aggiuntive
+            for (int i = 0; i < addShoesModel.Images.Count; i++)
+            {
+                if (
+                    string.IsNullOrEmpty(addShoesModel.Images[i])
+                    || string.IsNullOrWhiteSpace(addShoesModel.Images[i])
+                )
+                {
+                    addShoesModel.Images[i] = shoesImgs[rdn.Next(0, shoesImgs.Count)];
+                }
+            }
+
+            newShoes.Images = addShoesModel.Images;
 
             shoes.Add(newShoes);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet("/shoes/details/{id:guid}")]
+        public IActionResult Details(Guid id)
+        {
+            var selectedShoes = shoes.FirstOrDefault(s => s.Id == id);
+
+            if (selectedShoes != null)
+            {
+                var shoesFound = new ShoesModelView()
+                {
+                    Id = selectedShoes.Id,
+                    Name = selectedShoes.Name,
+                    Price = selectedShoes.Price,
+                    Description = selectedShoes.Description,
+                    MainImage = selectedShoes.MainImage,
+                    Images = selectedShoes.Images,
+                };
+
+                return View(shoesFound);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpGet("/remove/{id:guid}")]
+        public IActionResult Delete(Guid id)
+        {
+            var selectedShoes = shoes.FirstOrDefault(s => s.Id == id);
+
+            if (selectedShoes == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            shoes.Remove(selectedShoes);
 
             return RedirectToAction("Index");
         }

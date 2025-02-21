@@ -26,3 +26,8 @@ html {
 body {
     min-height: 100vh;
 }
+
+.imgBox {
+    height: 300px;
+    overflow: hidden;
+}
