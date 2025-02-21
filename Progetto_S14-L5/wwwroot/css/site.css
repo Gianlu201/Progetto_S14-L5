@@ -31,3 +31,7 @@ body {
     height: 300px;
     overflow: hidden;
 }
+
+.shoesImg {
+    cursor:pointer;
+}
