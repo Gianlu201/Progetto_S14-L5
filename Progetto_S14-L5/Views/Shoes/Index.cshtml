@@ -26,7 +26,7 @@
                     </a>
                     <div class="card-body">
                         <a class="card-title h5 text-decoration-none text-black" asp-controller="Shoes" asp-action="Details" asp-route-id="@shoes.Id">@shoes.Name</a>
-                        <p class="card-text">€@shoes.Price</p>
+                        <p class="card-text">€@shoes.GetPrice()</p>
                     </div>
                 </div>
             </div>

@@ -66,7 +66,7 @@ namespace Progetto_S14_L5.Controllers
         {
             if (!ModelState.IsValid)
             {
-                TempData["Error"] = "Check datas, something went wrong!";
+                TempData["Message"] = "Check datas, something went wrong!";
                 return RedirectToAction("Add");
             }
 
@@ -170,8 +170,8 @@ namespace Progetto_S14_L5.Controllers
         {
             if (!ModelState.IsValid)
             {
-                TempData["Error"] = "Check datas, something went wrong!";
-                return RedirectToAction("Add");
+                TempData["Message"] = "Check datas, something went wrong!";
+                return RedirectToAction("Index");
             }
 
             var selectedShoes = shoes.FirstOrDefault(s => s.Id == id);

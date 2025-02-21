@@ -1,4 +1,6 @@
-﻿namespace Progetto_S14_L5.Models
+﻿using System.Globalization;
+
+namespace Progetto_S14_L5.Models
 {
     public class Shoes
     {
@@ -8,6 +10,11 @@
         public string? Description { get; set; }
         public string? MainImage { get; set; }
         public List<string> Images { get; set; } = [];
+
+        public string GetPrice()
+        {
+            return $"{Price}";
+        }
 
         public static List<string> shoesImgs =
         [
