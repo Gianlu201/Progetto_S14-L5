@@ -74,17 +74,19 @@ namespace Progetto_S14_L5.Controllers
 
             addShoesModel.CheckImages();
 
-            var newShoes = new Shoes()
-            {
-                Id = Guid.NewGuid(),
-                Name = addShoesModel.Name,
-                Price = addShoesModel.Price,
-                Description = addShoesModel.Description,
-                MainImage = addShoesModel.MainImage,
-                Images = addShoesModel.Images,
-            };
+            shoes.Add(
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = addShoesModel.Name,
+                    Price = addShoesModel.Price,
+                    Description = addShoesModel.Description,
+                    MainImage = addShoesModel.MainImage,
+                    Images = addShoesModel.Images,
+                }
+            );
 
-            shoes.Add(newShoes);
+            TempData["Message"] = "All right! Shoes added to catalogue!";
 
             return RedirectToAction("Index");
         }
@@ -110,6 +112,8 @@ namespace Progetto_S14_L5.Controllers
             }
             else
             {
+                TempData["Message"] = "Something gone wrong! Try again!";
+
                 return RedirectToAction("Index");
             }
         }
@@ -124,9 +128,18 @@ namespace Progetto_S14_L5.Controllers
                 return RedirectToAction("Index");
             }
 
-            shoes.Remove(selectedShoes);
+            if (shoes.Remove(selectedShoes))
+            {
+                TempData["Message"] = "Shoes removed successfully!";
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["Message"] = "Something gone wrong! Try again!";
+
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpGet("/edit/{id:guid}")]
@@ -163,22 +176,26 @@ namespace Progetto_S14_L5.Controllers
 
             var selectedShoes = shoes.FirstOrDefault(s => s.Id == id);
 
-            if (selectedShoes != null)
+            if (selectedShoes == null)
             {
-                editShoesModel.CheckMainImage();
+                TempData["Message"] = "Something gone wrong! Try again!";
 
-                editShoesModel.CheckImages();
-
-                selectedShoes.Name = editShoesModel.Name;
-                selectedShoes.Price = editShoesModel.Price;
-                selectedShoes.Description = editShoesModel.Description;
-                selectedShoes.MainImage = editShoesModel.MainImage;
-                selectedShoes.Images = editShoesModel.Images;
-
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit");
             }
 
-            return RedirectToAction("Edit");
+            editShoesModel.CheckMainImage();
+
+            editShoesModel.CheckImages();
+
+            selectedShoes.Name = editShoesModel.Name;
+            selectedShoes.Price = editShoesModel.Price;
+            selectedShoes.Description = editShoesModel.Description;
+            selectedShoes.MainImage = editShoesModel.MainImage;
+            selectedShoes.Images = editShoesModel.Images;
+
+            TempData["Message"] = "Shoes edited successfully!";
+
+            return RedirectToAction("Index");
         }
     }
 }

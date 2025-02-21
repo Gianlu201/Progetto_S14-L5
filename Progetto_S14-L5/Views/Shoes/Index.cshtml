@@ -6,6 +6,14 @@
 
 <h1>Our Shoes</h1>
 
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-dismissible fade show alert-info" role="alert">
+        <span class="fw-bold">@TempData["Message"]</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
 <div class="row">
     @if(Model.Shoes?.Count > 0)
     {

@@ -10,11 +10,11 @@
 <div class="row">
     <div class="col-7 d-flex gap-4">
         <div class="col-2">
-            <img src=@Model.MainImage class="w-100 mb-3" alt="@Model.Name image" />
+            <img src=@Model.MainImage class="shoesImg w-100 mb-3" alt="@Model.Name image" />
 
             @foreach(var img in Model.Images)
             {
-                    <img src=@img class="w-100 mb-3" alt="@Model.Name image" />
+                    <img src=@img class="shoesImg w-100 mb-3" alt="@Model.Name image" />
             }
         </div>
         <div class="col-9">
@@ -33,3 +33,5 @@
         </div>
     </div>
 </div>
+
+<script src="~/js/detailsPage.js"></script>
