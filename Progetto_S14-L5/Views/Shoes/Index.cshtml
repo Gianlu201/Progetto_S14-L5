@@ -17,7 +17,7 @@
                         <img src=@shoes.MainImage class="card-img-top" alt=@shoes.Name>
                     </a>
                     <div class="card-body">
-                        <h5 class="card-title">@shoes.Name</h5>
+                        <a class="card-title h5 text-decoration-none text-black" asp-controller="Shoes" asp-action="Details" asp-route-id="@shoes.Id">@shoes.Name</a>
                         <p class="card-text">€@shoes.Price</p>
                     </div>
                 </div>
