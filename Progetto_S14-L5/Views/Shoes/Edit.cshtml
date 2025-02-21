@@ -1,0 +1,52 @@
+﻿@model EditShoesModel;
+
+@{
+    ViewData["Title"] = "Edit Shoes";
+}
+
+<h2>Edit Shoes</h2>
+
+<div class="w-25">
+    <form method="post" asp-controller="Shoes" asp-action="EditShoes" asp-route-id="@Model.Id">
+        <div class="mt-3">
+            <label class="form-label fw-bold mb-1" for="shoesName" asp-for="Name"></label>
+            <input class="form-control" id="shoesName" asp-for="Name" />
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label fw-bold mb-1" for="shoesPrice" asp-for="Price"></label>
+            <input class="form-control" id="shoesPrice" asp-for="Price" />
+            <span class="text-danger" asp-validation-for="Price"></span>
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label fw-bold mb-1" for="shoesDescription" asp-for="Description"></label>
+            <textarea class="form-control" id="shoesDescription" rows="5" asp-for="Description"></textarea>
+            <span class="text-danger" asp-validation-for="Description"></span>
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label fw-bold mb-1" for="shoesCover" asp-for="MainImage"></label>
+            <input class="form-control" id="shoesCover" asp-for="MainImage" />
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label fw-bold mb-1" for="shoesImgs" asp-for="Images"></label>
+            <input class="form-control mb-2" id="shoesImgs" asp-for="Images[0]" />
+            <input class="form-control" asp-for="Images[1]" />
+        </div>
+
+        <p class="text-muted mt-2">
+            * Images are not required, if not entered, default images will be used
+        </p>
+
+        <div class="mt-3">
+            <button class="btn btn-warning">Edit</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

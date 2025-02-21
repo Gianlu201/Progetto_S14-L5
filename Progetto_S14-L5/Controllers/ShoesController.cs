@@ -128,5 +128,57 @@ namespace Progetto_S14_L5.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet("/edit/{id:guid}")]
+        public IActionResult Edit(Guid id)
+        {
+            var selectedShoes = shoes.FirstOrDefault(s => s.Id == id);
+
+            if (selectedShoes == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var editShoes = new EditShoesModel()
+            {
+                Id = selectedShoes.Id,
+                Name = selectedShoes.Name,
+                Price = selectedShoes.Price,
+                Description = selectedShoes.Description,
+                MainImage = selectedShoes.MainImage,
+                Images = selectedShoes.Images,
+            };
+
+            return View(editShoes);
+        }
+
+        [HttpPost("edit/{id:guid}")]
+        public IActionResult EditShoes(EditShoesModel editShoesModel, Guid id)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["Error"] = "Check datas, something went wrong!";
+                return RedirectToAction("Add");
+            }
+
+            var selectedShoes = shoes.FirstOrDefault(s => s.Id == id);
+
+            if (selectedShoes != null)
+            {
+                editShoesModel.CheckMainImage();
+
+                editShoesModel.CheckImages();
+
+                selectedShoes.Name = editShoesModel.Name;
+                selectedShoes.Price = editShoesModel.Price;
+                selectedShoes.Description = editShoesModel.Description;
+                selectedShoes.MainImage = editShoesModel.MainImage;
+                selectedShoes.Images = editShoesModel.Images;
+
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Edit");
+        }
     }
 }

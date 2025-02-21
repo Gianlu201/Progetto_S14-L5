@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = Model.Name;
+    ViewBag.SelectedShoesImg = Model.MainImage;
 }
 
 <h2>More about @Model.Name</h2>
@@ -13,11 +14,11 @@
 
             @foreach(var img in Model.Images)
             {
-                <img src=@img class="w-100 mb-3" alt="@Model.Name image"/>
+                    <img src=@img class="w-100 mb-3" alt="@Model.Name image" />
             }
         </div>
         <div class="col-9">
-            <img class="w-100" src="@Model.MainImage" alt="@Model.Name image" />
+            <img id="bigImg" class="w-100" src="@ViewBag.SelectedShoesImg" alt="@Model.Name image" />
         </div>
     </div>
     <div class="col-5">
@@ -27,7 +28,7 @@
         <p>@Model.Description</p>
 
         <div>
-            <a class="btn btn-success">Edit</a>
+            <a class="btn btn-success" asp-controller="Shoes" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
             <a class="btn btn-danger" asp-controller="Shoes" asp-action="Delete" asp-route-id="@Model.Id">Remove</a>
         </div>
     </div>
